@@ -1,0 +1,56 @@
+/* ---- 導覽列 ---- */
+.nav {
+  background-color: #2e959c;         /* 你原本的顏色 */
+  padding: 6px 8px;
+}
+
+.nav-item {
+  display: inline-block;              /* 橫向排列 */
+  padding: 10px 14px;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* 滑鼠懸停改顏色（:hover） */
+.nav-item:hover { background-color: #236f73; }
+
+/* ---- dropdown 位置 ---- */
+.dropdown { position: relative; display: inline-block; }
+
+/* 下拉選單預設隱藏（display） */
+.dropdown-menu {
+  display: none;
+  position: absolute;                 /* 讓選單貼在「連結」下面 */
+  top: 100%; left: 0;
+  min-width: 140px;
+  background: #fff;
+  border: 1px solid #999;
+  z-index: 10;
+}
+
+.dropdown-link {
+  display: block;
+  padding: 10px 14px;
+  color: #333;
+  text-decoration: none;
+}
+
+.dropdown-link:hover { background: #f2f2f2; }
+
+/* ---- 核心功能：點擊後展開（:focus） ----
+   當「連結 ▾」這個 a 取得焦點，就顯示緊跟在後面的 .dropdown-menu */
+.dropdown-toggle:focus + .dropdown-menu { display: block; }
+
+/* 補強：滑鼠移進整個 dropdown 區域，也保持展開（:hover） */
+.dropdown:hover .dropdown-menu { display: block; }
+
+/* ---- 其他（頁面標題 / 表格） ---- */
+.page-title { margin: 16px 0; font-family: "標楷體", PMingLiU, serif; }
+
+.facts { width: 100%; border-collapse: collapse; }
+.facts td { border: 1px solid #999; text-align: center; padding: 8px; }
+
+/* 圖片自適應寬度（避免超出格子） */
+.facts img { max-width: 100%; height: auto; }
+
+
