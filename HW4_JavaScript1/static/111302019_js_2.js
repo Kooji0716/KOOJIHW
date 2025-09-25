@@ -16,3 +16,15 @@ function appendToScreen(txt){
 function clearScreen(){
     document.getElementById("screen").value = "";
 }
+
+// evaluateScreen()：計算輸入框裡的算式
+function evaluateScreen(){
+    let expr = document.getElementById("screen").value; // 讀取輸入框的字串
+    try{
+        let ans = eval(expr);   // 用 eval() 計算算式
+        alert(expr + " = " + ans);  // 顯示算式與答案
+        document.getElementById("screen").value = ans;  // 把輸入框換成答案
+    }catch(e){
+        alert("算式錯誤!"); // 如果算式格式錯誤，顯示提示訊息
+    }
+}
