@@ -28,3 +28,16 @@ function evaluateScreen(){
         alert("算式錯誤!"); // 如果算式格式錯誤，顯示提示訊息
     }
 }
+//建立一個陣列 
+let nums = [0,1,2,3,4,5,6,7,8,9];
+
+// 用 for 迴圈把 0–9 的按鈕依序寫出來
+for (let i=0; i<nums.length; i++){
+    if (i % 3 === 0) document.write("<br>");    // 每 3 個數字換行（i=0,3,6 時會先寫一個 <br>）
+    
+    //建立數字按鈕
+    document.write(
+    "<button onclick='appendToScreen(" + nums[i] + ")' style='width:80px;height:87px;margin:8px;'>" 
+    + nums[i] + "</button>"
+  );
+}
