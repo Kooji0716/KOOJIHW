@@ -41,3 +41,16 @@ for (let i=0; i<nums.length; i++){
     + nums[i] + "</button>"
   );
 }
+
+// 建立運算子陣列(加、減、乘、除、左括號、右括號)
+let duck = ["+","-","*","/","(",")"];
+
+// 用 for 迴圈把運算子按鈕依序寫出來
+for (let i=0; i<duck.length; i++){
+  // 每個按鈕的 onclick：呼叫 appendToScreen("符號")
+  // 注意：字串要加跳脫字元 \" 才能正確顯示
+  document.write(
+    "<button onclick='appendToScreen(\"" + duck[i] + "\")' style='width:80px;height:47px;margin:4px;'>"
+    + duck[i] + "</button>"
+  );
+}
