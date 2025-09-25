@@ -54,3 +54,10 @@ for (let i=0; i<duck.length; i++){
     + duck[i] + "</button>"
   );
 }
+
+// 等號按鈕
+document.write(`
+    <button onclick='evaluateScreen()' style='width:60px;height:40px;margin:2px;'>
+    =
+    </button>
+    `);
