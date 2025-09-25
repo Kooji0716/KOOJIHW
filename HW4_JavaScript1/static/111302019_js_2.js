@@ -61,3 +61,6 @@ document.write(`
     =
     </button>
     `);
+
+// 收尾
+document.write("</div>");
