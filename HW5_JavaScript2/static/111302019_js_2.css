@@ -1,0 +1,44 @@
+.cart {
+  width: 80%;
+  margin: 20px auto;
+  border: 1px solid #333;
+  border-collapse: collapse;
+  font-family: "微軟正黑體", sans-serif;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 50px 200px 100px 100px 150px 120px;
+  border-bottom: 1px solid #aaa;
+  align-items: center;
+  padding: 8px;
+  text-align: center;
+}
+
+.row.header {
+  font-weight: bold;
+  background-color: #f2f2f2;
+}
+
+.row.total {
+  font-weight: bold;
+  background-color: #eee;
+}
+
+button {
+  margin: 0 5px;
+  padding: 3px 6px;
+  font-size: 14px;
+}
+
+.checkout {
+  padding: 8px 20px;
+  background-color: gray;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+.checkout:hover {
+  background-color: darkgray;
+}

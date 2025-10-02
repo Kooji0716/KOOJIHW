@@ -1,108 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <title>111302019_購物車</title>
-  <style>
-    table {
-      border-collapse: collapse;
-      width: 80%;
-      margin: 20px auto;
-    }
-    th, td {
-      border: 1px solid black;
-      padding: 8px;
-      text-align: center;
-    }
-    img {
-      width: 100px;
-    }
-    .total-row {
-      font-weight: bold;
-    }
-    .checkout {
-      margin-top: 10px;
-      padding: 8px 16px;
-      font-size: 16px;
-      background-color: gray;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-  </style>
+  <title>購物車</title>
+  <link rel="stylesheet" href="..\static\111302019_js_2.css"> <!-- 引入外部 CSS -->
 </head>
 <body>
 
-<h2>購物車</h2>
-<table>
-  <tr>
-    <th><input type="checkbox"></th>
-    <th>商品名稱</th>
-    <th>商品庫存</th>
-    <th>單價</th>
-    <th>數量</th>
-    <th>總計</th>
-  </tr>
+  <h2>購物車</h2>
 
-  <!-- 第一個商品 -->
-  <tr>
-    <td><input type="checkbox" checked></td>
-    <td>
-      <img src="monitor.jpg" alt="BENQ護眼螢幕"><br>
-      BENQ護眼螢幕
-    </td>
-    <td>18</td>
-    <td>$6988</td>
-    <td>
-      <button>-</button>
-      <input type="text" value="1" size="2">
-      <button>+</button>
-    </td>
-    <td>$6988</td>
-  </tr>
+  <div class="cart">
+    <!-- 標題列 -->
+    <div class="row header">
+      <div>✔</div>
+      <div>商品名稱</div>
+      <div>商品圖片</div>
+      <div>商品庫存</div>
+      <div>單價</div>
+      <div>數量</div>
+      <div>總計</div>
+    </div>
 
-  <!-- 第二個商品 -->
-  <tr>
-    <td><input type="checkbox" checked></td>
-    <td>
-      <img src="lamp.jpg" alt="3M 博視燈"><br>
-      3M 博視燈
-    </td>
-    <td>89</td>
-    <td>$1799</td>
-    <td>
-      <button>-</button>
-      <input type="text" value="1" size="2">
-      <button>+</button>
-    </td>
-    <td>$1799</td>
-  </tr>
+    <!-- 商品 1 -->
+    <div class="row">
+      <div><input type="checkbox"></div>
+      <div>肥尾守宮</div>
+      <div>18</div>
+      <div>$1300</div>
+      <div>
+        <button>-</button>
+        <span>1</span>
+        <button>+</button>
+      </div>
+      <div>$1300</div>
+    </div>
 
-  <!-- 第三個商品 -->
-  <tr>
-    <td><input type="checkbox"></td>
-    <td>
-      <img src="drone.jpg" alt="DJI MINI 4 Pro"><br>
-      DJI MINI 4 Pro
-    </td>
-    <td>23</td>
-    <td>$31690</td>
-    <td>
-      <button>-</button>
-      <input type="text" value="1" size="2">
-      <button>+</button>
-    </td>
-    <td>$31690</td>
-  </tr>
+    <!-- 商品 2 -->
+    <div class="row">
+      <div><input type="checkbox"></div>
+      <div>豹紋守宮</div>
+      <div>50</div>
+      <div>$1550</div>
+      <div>
+        <button>-</button>
+        <span>1</span>
+        <button>+</button>
+      </div>
+      <div>$1550</div>
+    </div>
 
-  <!-- 總計 -->
-  <tr class="total-row">
-    <td colspan="5">total</td>
-    <td>$8787</td>
-  </tr>
-</table>
+    <!-- 商品 3 -->
+    <div class="row">
+      <div><input type="checkbox"></div>
+      <div>睫角守宮</div>
+      <div>23</div>
+      <div>$1899</div>
+      <div>
+        <button>-</button>
+        <span>1</span>
+        <button>+</button>
+      </div>
+      <div>$1899</div>
+    </div>
 
-<button class="checkout">結帳</button>
+    <!-- 總計列 -->
+    <div class="row total">
+      <div colspan="5">Total</div>
+      <div>$50</div>
+    </div>
+  </div>
+
+  <!-- 結帳按鈕 -->
+  <div style="text-align:right; margin-top:10px;">
+    <button class="checkout">結帳</button>
+  </div>
 
 </body>
 </html>
