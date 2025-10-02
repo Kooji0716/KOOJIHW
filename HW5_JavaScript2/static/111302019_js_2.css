@@ -2,13 +2,13 @@
   width: 80%;
   margin: 20px auto;
   border: 1px solid #333;
-  border-collapse: collapse;
   font-family: "微軟正黑體", sans-serif;
 }
 
-.row {
+/* 7 欄：勾選 | 名稱 | 圖片 | 庫存 | 單價 | 數量 | 總計  */
+.row{
   display: grid;
-  grid-template-columns: 50px 200px 100px 100px 150px 120px;
+  grid-template-columns: 50px 220px 140px 100px 120px 160px 140px;
   border-bottom: 1px solid #aaa;
   align-items: center;
   padding: 8px;
@@ -25,6 +25,15 @@
   background-color: #eee;
 }
 
+/* 圖片區 */
+.product-img{ display:flex; justify-content:center; }
+.product-img img{ width:80px; height:auto; object-fit:contain; }
+
+/* 總計列跨欄 */
+.row.total > div:first-child{ grid-column: 1 / span 6; text-align:left; padding-left:16px; }
+.row.total > div:last-child{  grid-column: 7; text-align:right; }
+
+/* 按鈕 */
 button {
   margin: 0 5px;
   padding: 3px 6px;
@@ -39,6 +48,4 @@ button {
   cursor: pointer;
   font-size: 16px;
 }
-.checkout:hover {
-  background-color: darkgray;
-}
+.checkout:hover { background-color: darkgray; }
