@@ -40,18 +40,31 @@ function guessNumber() {
   }
 
   // 4) 有有效輸入才累計次數
-  count++;
+ count++;
 
-    // 5) 和答案比較，分三種情況提示
+  // 4) 比大小 → 把提示寫到頁面
   if (guess > answer) {
-    alert('太大了，請重猜一次');
+    document.getElementById('msg').innerHTML = '太大了，請再試一次。';
   } else if (guess < answer) {
-    alert('太小了，請重猜一次');
+    document.getElementById('msg').innerHTML = '太小了，請再試一次。';
   } else {
-    // 6) 猜中：顯示總次數，並重置遊戲（新答案、次數歸零）
-    alert('答對！共猜了 ' + count + ' 次');
-    answer = Math.floor(Math.random() * 101);  // 重新出題
-    count = 0;                                 // 歸零次數
+    // 5) 猜中！
+    stopTimer(); // 停止計時
+
+    alert('恭喜你猜對了！共猜了 ' + count + ' 次，耗時 ' + seconds + ' 秒。');
+
+    // 在歷程區新增一筆紀錄
+    var row = document.createElement('div');
+    row.textContent = new Date().toLocaleTimeString() + '｜猜了 ' + count + ' 次｜耗時 ' + seconds + ' 秒';
+    document.getElementById('log').appendChild(row);
+
+    // 6) 重置遊戲（新題目、歸零、清畫面）
+    answer = Math.floor(Math.random() * 101);
+    count = 0;
+    seconds = 0;
+    document.getElementById('timer').textContent = '0';
+    document.getElementById('msg').innerHTML = '已出新題目，繼續挑戰！';
+    document.getElementById('input_1').value = '';
   }
 }
 
