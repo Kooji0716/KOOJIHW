@@ -1,10 +1,31 @@
 // 產生 0~100 的隨機整數
 var answer = Math.floor(Math.random() * 101);  // 0 ≤ answer ≤ 100
 var count = 0;                                  // 記錄已猜幾次
+var timerId = null;  // 計時器編號（用來停止）
+var seconds = 0;     // 已經過幾秒
+
+function startTimerIfNeeded() {
+  if (timerId !== null) return;      // 已在計時就不要重複開
+  seconds = 0;
+  document.getElementById('timer').textContent = seconds;
+  timerId = setInterval(function () {
+    seconds++;
+    document.getElementById('timer').textContent = seconds;
+  }, 1000);
+}
+
+function stopTimer() {
+  if (timerId !== null) {
+    clearInterval(timerId);
+    timerId = null;
+  }
+}
 
 
 function guessNumber() {
-
+    
+// 第一次按「猜」就開始計時
+  startTimerIfNeeded();
 
   // 1) 取得輸入框文字（字串）
   var val = document.getElementById('input_1').value;
