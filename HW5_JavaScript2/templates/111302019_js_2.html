@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
+  <script src="../static/111302019_js_2.js" defer></script>
   <meta charset="UTF-8">
   <title>購物車</title>
   <link rel="stylesheet" href="../static/111302019_js_2.css">
@@ -22,60 +23,57 @@
     </div>
 
     <!-- 商品 1 -->
-    <div class="row">
-      <div><input type="checkbox"></div>
+    <div class="row item" data-price="1300" data-stock="18">
+      <div><input type="checkbox" class="item-check"></div>
       <div>肥尾守宮</div>
-      <div class="product-img">
-        <img src="../static/img/肥尾守宮.jpg" alt="肥尾守宮">
+      <div class="product-img"><img src="../static/img/肥尾守宮.jpg" alt="肥尾守宮"></div>
+      <div class="stock">18</div>
+      <div class="price">$1300</div>
+      <div class="qty-cell">
+        <button class="dec">-</button>
+        <input type="text" class="qty" value="1">
+        <button class="inc">+</button>
       </div>
-      <div>18</div>
-      <div>$1300</div>
-      <div>
-        <button>-</button>
-        <span>1</span>
-        <button>+</button>
-      </div>
-      <div>$1300</div>
+      <div class="sub">$1300</div>
     </div>
+
 
     <!-- 商品 2 -->
-    <div class="row">
-      <div><input type="checkbox"></div>
+    <div class="row item" data-price="1550" data-stock="50">
+      <div><input type="checkbox" class="item-check"></div>
       <div>豹紋守宮</div>
-      <div class="product-img">
-        <img src="../static/img/豹紋守宮.jpg" alt="豹紋守宮">
+      <div class="product-img"><img src="../static/img/豹紋守宮.jpg" alt="豹紋守宮"></div>
+      <div class="stock">50</div>
+      <div class="price">$1550</div>
+      <div class="qty-cell">
+        <button class="dec">-</button>
+        <input type="text" class="qty" value="1">
+        <button class="inc">+</button>
       </div>
-      <div>50</div>
-      <div>$1550</div>
-      <div>
-        <button>-</button>
-        <span>1</span>
-        <button>+</button>
-      </div>
-      <div>$1550</div>
+      <div class="sub">$1550</div>
     </div>
 
+
     <!-- 商品 3 -->
-    <div class="row">
-      <div><input type="checkbox"></div>
+    <div class="row item" data-price="1899" data-stock="23">
+      <div><input type="checkbox" class="item-check"></div>
       <div>睫角守宮</div>
-      <div class="product-img">
-        <img src="../static/img/截角守宮.jpg" alt="睫角守宮">
+      <div class="product-img"><img src="../static/img/截角守宮.jpg" alt="睫角守宮"></div>
+      <div class="stock">23</div>
+      <div class="price">$1899</div>
+      <div class="qty-cell">
+        <button class="dec">-</button>
+        <input type="text" class="qty" value="1">
+        <button class="inc">+</button>
       </div>
-      <div>23</div>
-      <div>$1899</div>
-      <div>
-        <button>-</button>
-        <span>1</span>
-        <button>+</button>
-      </div>
-      <div>$1899</div>
+      <div class="sub">$1899</div>
     </div>
+
 
     <!-- 總計列 -->
     <div class="row total">
       <div>Total</div>
-      <div>$50</div>
+      <div>$</div>
     </div>
   </div>
 

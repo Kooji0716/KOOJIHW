@@ -8,7 +8,7 @@
 /* 7 欄：勾選 | 名稱 | 圖片 | 庫存 | 單價 | 數量 | 總計  */
 .row{
   display: grid;
-  grid-template-columns: 50px 220px 140px 100px 120px 160px 140px;
+  grid-template-columns: 50px 220px 140px 100px 120px 250px 140px;
   border-bottom: 1px solid #aaa;
   align-items: center;
   padding: 8px;
