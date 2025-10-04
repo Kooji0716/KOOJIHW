@@ -76,4 +76,52 @@ if (checkAll) {
   });
 }
 
+// ========= 結帳 =========
+const checkoutBtn = document.querySelector('.checkout');
+if (checkoutBtn) checkoutBtn.addEventListener('click', checkout);
 
+function checkout() {
+  const total = toNumber(grandEl?.textContent || '0');
+  if (total <= 0) {
+    alert('請先勾選商品並設定數量。');
+    return;
+  }
+
+  // 彙整明細
+  const lines = [];
+  rows.forEach(row => {
+    const chk = row.querySelector('.item-check');
+    if (!chk || !chk.checked) return;
+
+    const name  = row.children[1].textContent.trim(); // 第二欄：商品名稱
+    const price = parseInt(row.dataset.price, 10);
+    const qty   = clampQty(row);
+    const sub   = price * qty;
+    lines.push(`${name} x ${qty} = $${sub.toLocaleString()}`);
+  });
+  lines.push('--------------------');
+  lines.push(`總金額 = $${total.toLocaleString()}`);
+  alert(lines.join('\n'));
+
+  // 扣庫存 + 重置狀態
+  rows.forEach(row => {
+    const chk = row.querySelector('.item-check');
+    if (!chk || !chk.checked) return;
+
+    const qty = clampQty(row);
+    let stock = parseInt(row.dataset.stock, 10);
+    stock = Math.max(0, stock - qty);
+    row.dataset.stock = String(stock);
+    row.querySelector('.stock').textContent = stock;
+
+    // 清狀態
+    chk.checked = false;
+    row.querySelector('.qty').value = 1;
+    row.querySelector('.sub').textContent = '$0';
+  });
+
+  // 全選取消、總金額歸 0
+  if (checkAll) checkAll.checked = false;
+  if (grandEl) grandEl.textContent = '$0';
+  updateTotal();
+}
