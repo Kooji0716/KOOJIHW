@@ -22,7 +22,7 @@ function updateRow(row) {
   const checked = row.querySelector('.item-check')?.checked;
   const price = parseInt(row.dataset.price, 10);
   const qty = clampQty(row);
-  const sub = checked ? price * qty : 0;
+  const sub = price * qty;
   row.querySelector('.sub').textContent = `$${sub.toLocaleString()}`;
   updateTotal();
 }
@@ -31,14 +31,18 @@ function updateRow(row) {
 function updateTotal() {
   let sum = 0;
   rows.forEach(row => {
-    sum += toNumber(row.querySelector('.sub').textContent);
+    const checked = row.querySelector('.item-check').checked;
+    if (!checked) return;                     // 只算有勾選的
+    const price = parseInt(row.dataset.price, 10);
+    const qty   = parseInt(row.querySelector('.qty').value, 10) || 1;
+    sum += price * qty;
   });
   if (grandEl) grandEl.textContent = `$${sum.toLocaleString()}`;
 
-  // 順便控制「結帳」可用狀態
   const btn = document.querySelector('.checkout');
-  if (btn) btn.disabled = (sum <= 0);
+  if (btn) btn.disabled = (sum <= 0);         // 總金額 0 時停用結帳（可選）
 }
+
 
 // 同步全選勾勾（只要有任何一列沒勾，全選就取消）
 function syncCheckAll() {
@@ -81,47 +85,55 @@ const checkoutBtn = document.querySelector('.checkout');
 if (checkoutBtn) checkoutBtn.addEventListener('click', checkout);
 
 function checkout() {
-  const total = toNumber(grandEl?.textContent || '0');
+  // 只計入有勾選的商品
+  let total = 0;
+  const lines = [];
+
+  rows.forEach(row => {
+    const chk = row.querySelector('.item-check');
+    if (!chk || !chk.checked) return;
+
+    const name  = row.children[1].textContent.trim(); // 第二欄是商品名稱
+    const price = parseInt(row.dataset.price, 10);
+    const qty   = clampQty(row);
+    const sub   = price * qty;
+
+    total += sub;
+    lines.push(`${name} x ${qty} = $${sub.toLocaleString()}`);
+  });
+
   if (total <= 0) {
     alert('請先勾選商品並設定數量。');
     return;
   }
 
-  // 彙整明細
-  const lines = [];
-  rows.forEach(row => {
-    const chk = row.querySelector('.item-check');
-    if (!chk || !chk.checked) return;
-
-    const name  = row.children[1].textContent.trim(); // 第二欄：商品名稱
-    const price = parseInt(row.dataset.price, 10);
-    const qty   = clampQty(row);
-    const sub   = price * qty;
-    lines.push(`${name} x ${qty} = $${sub.toLocaleString()}`);
-  });
   lines.push('--------------------');
   lines.push(`總金額 = $${total.toLocaleString()}`);
   alert(lines.join('\n'));
 
-  // 扣庫存 + 重置狀態
+  // 扣庫存 + 重置狀態（只處理有勾選的列）
   rows.forEach(row => {
     const chk = row.querySelector('.item-check');
     if (!chk || !chk.checked) return;
 
+    // 扣庫存（不小於 0）
     const qty = clampQty(row);
     let stock = parseInt(row.dataset.stock, 10);
     stock = Math.max(0, stock - qty);
     row.dataset.stock = String(stock);
     row.querySelector('.stock').textContent = stock;
 
-    // 清狀態
+    // 清狀態：取消勾選、數量回 1、小計改成「單價 × 1」
     chk.checked = false;
-    row.querySelector('.qty').value = 1;
-    row.querySelector('.sub').textContent = '$0';
+    const qtyInp = row.querySelector('.qty');
+    qtyInp.value = 1;
+
+    const price = parseInt(row.dataset.price, 10);
+    row.querySelector('.sub').textContent = `$${(price * 1).toLocaleString()}`;
   });
 
-  // 全選取消、總金額歸 0
+  // 全選取消 & 重新計總金額（只會加總已勾選的，現在應為 0）
   if (checkAll) checkAll.checked = false;
-  if (grandEl) grandEl.textContent = '$0';
   updateTotal();
 }
+
